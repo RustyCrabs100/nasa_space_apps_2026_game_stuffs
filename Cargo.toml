@@ -1,0 +1,10 @@
+[package]
+name = "nasa_space_apps_2026"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+bevy = { version = "0.20.1", features = [
+    "bevy_camera_controller",
+    "pan_orbit_camera",
+] }
