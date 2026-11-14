@@ -7,4 +7,9 @@ edition = "2024"
 bevy = { version = "0.20.1", features = [
     "bevy_camera_controller",
     "pan_orbit_camera",
+    "bevy_ui_widgets",
 ] }
+
+[features]
+default = ["debug"]
+debug = ["bevy/debug", "bevy/debug_glam_assert"]
