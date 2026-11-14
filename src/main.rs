@@ -7,6 +7,8 @@ use bevy::{
     ui_widgets::{Activate, ActivateOnPress, Button, observe},
 };
 
+use bevy::prelude::If as SkipSystemOnNone;
+
 #[derive(Debug, Clone, Copy, Default, Eq, PartialEq, Hash, States)]
 enum GameState {
     #[default]
@@ -25,12 +27,15 @@ fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
         .init_state::<GameState>()
-        .add_systems(Startup, sys_setup_player)
+        .add_systems(Startup, (sys_setup_player).chain())
         .add_systems(
             OnEnter(GameState::Menu),
             (
                 sys_toggle_menu_visibility,
-                (sys_create_menu_camera, sys_create_menu_ui).run_if(run_once),
+                // Yes this is a horrible shortcut but if anyone breaks this, its their fault
+                (sys_load_font, sys_create_menu_camera, sys_create_menu_ui)
+                    .run_if(run_once)
+                    .chain(),
             )
                 .chain(),
         )
@@ -43,6 +48,11 @@ const NORMAL_BUTTON: Color = Color::srgb(0.15, 0.15, 0.15);
 const HOVERED_BUTTON: Color = Color::srgb(0.25, 0.25, 0.25);
 
 #[derive(Resource)]
+struct GameFont {
+    source: FontSource,
+}
+
+#[derive(Resource)]
 struct MenuCamera {
     camera: Entity,
 }
@@ -50,6 +60,18 @@ struct MenuCamera {
 #[derive(Resource)]
 struct MenuData {
     start: Entity,
+}
+
+fn sys_load_font(mut commands: Commands, asset_server: Res<AssetServer>) {
+    let font = asset_server.load::<bevy::prelude::Font>("others/pixels_bjn5.ttf");
+
+    let font_source = FontSource::Handle(font);
+
+    println!("Size of Font: {0}", core::mem::size_of_val(&font_source));
+
+    commands.insert_resource(GameFont {
+        source: font_source,
+    });
 }
 
 fn sys_create_menu_camera(mut commands: Commands) {
@@ -60,7 +82,7 @@ fn sys_create_menu_camera(mut commands: Commands) {
     commands.insert_resource(MenuCamera { camera });
 }
 
-fn sys_create_menu_ui(mut commands: Commands) {
+fn sys_create_menu_ui(mut commands: Commands, font: SkipSystemOnNone<Res<GameFont>>) {
     let start_button = commands
         .spawn((
             Node {
@@ -90,6 +112,7 @@ fn sys_create_menu_ui(mut commands: Commands) {
                     Text::new("Start"),
                     TextFont {
                         font_size: FontSize::Px(33.0),
+                        font: font.source.clone(),
                         ..default()
                     },
                     TextColor(Color::srgb(0.9, 0.9, 0.9)),
@@ -131,11 +154,13 @@ fn observe_on_game_start(_: On<Activate>, mut next_state: ResMut<NextState<GameS
 }
 
 fn sys_setup_player(mut commands: Commands) {
-    let player = commands
-        .spawn((
-            PanOrbitCamera::default(),
-            Player,
-            Transform::from_xyz(1.0, 1.0, 1.0).look_at(Vec3::new(0.0, 0.0, 0.0), Vec3::Y),
-        ))
-        .id();
+    commands.spawn((
+        PanOrbitCamera::default(),
+        Player,
+        Transform::from_xyz(1.0, 1.0, 1.0).look_at(Vec3::new(0.0, 0.0, 0.0), Vec3::Y),
+    ));
+}
+
+fn sys_setup_game(mut commands: Commands) {
+    todo!()
 }
