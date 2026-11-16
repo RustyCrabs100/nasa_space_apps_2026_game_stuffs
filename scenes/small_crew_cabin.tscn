@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dopos2oalwt5h"]
+
+[ext_resource type="Script" uid="uid://ckajwlil33cvc" path="res://small_crew_cabin.gd" id="1_nig5f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_abjk7"]
+
+[node name="small_crew_cabin" type="StaticBody3D" unique_id=1217621195]
+script = ExtResource("1_nig5f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=640253627]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2050650940]
+shape = SubResource("BoxShape3D_abjk7")

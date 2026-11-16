@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bfho5hf3aup3j"]
+
+[ext_resource type="FontFile" uid="uid://b4kfw2v378oqu" path="res://assets/others/pixels_bjn5.ttf" id="1_jix8l"]
+[ext_resource type="Script" uid="uid://c3qaliqvyi3vh" path="res://start.gd" id="2_glbon"]
+[ext_resource type="Script" uid="uid://8chajmg31wg6" path="res://settings.gd" id="3_nlkkf"]
+[ext_resource type="Script" uid="uid://jvoutjap4mqb" path="res://quit.gd" id="4_qe12f"]
+
+[node name="main_menu" type="Control" unique_id=63037654]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="start" type="Button" parent="." unique_id=801057533]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 386.0
+offset_top = 451.0
+offset_right = 711.0
+offset_bottom = 537.0
+theme_override_fonts/font = ExtResource("1_jix8l")
+theme_override_font_sizes/font_size = 48
+text = "Start Game"
+script = ExtResource("2_glbon")
+
+[node name="settings" type="Button" parent="." unique_id=1527129090]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 203.0
+offset_top = 456.0
+offset_right = 347.0
+offset_bottom = 573.0
+theme_override_fonts/font = ExtResource("1_jix8l")
+theme_override_font_sizes/font_size = 40
+text = "Settings"
+autowrap_mode = 3
+script = ExtResource("3_nlkkf")
+
+[node name="quit" type="Button" parent="." unique_id=1778807586]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 387.0
+offset_top = 544.0
+offset_right = 712.0
+offset_bottom = 579.0
+theme_override_fonts/font = ExtResource("1_jix8l")
+theme_override_font_sizes/font_size = 30
+text = "Quit Game"
+script = ExtResource("4_qe12f")

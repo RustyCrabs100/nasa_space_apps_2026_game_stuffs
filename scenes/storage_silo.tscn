@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://b5rgt6gujij8f"]
+
+[ext_resource type="Script" uid="uid://bhi3biyc03v65" path="res://storage_silo.gd" id="1_bxj64"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_abjk7"]
+
+[node name="storage_silo" type="StaticBody3D" unique_id=1774966526]
+script = ExtResource("1_bxj64")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1377487562]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=718798434]
+shape = SubResource("BoxShape3D_abjk7")

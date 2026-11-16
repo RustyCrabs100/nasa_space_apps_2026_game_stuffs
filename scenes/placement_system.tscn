@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://bg8gaom5xt20o"]
+
+[ext_resource type="Script" uid="uid://bvudeiov8kw7u" path="res://placement_manager.gd" id="1_3pvjo"]
+[ext_resource type="FontFile" uid="uid://b4kfw2v378oqu" path="res://assets/others/pixels_bjn5.ttf" id="2_bo8rr"]
+[ext_resource type="Script" uid="uid://e0m0c65rxut2" path="res://Scripts/building_data.gd" id="2_t0jqn"]
+[ext_resource type="PackedScene" uid="uid://530rw37jdodo" path="res://scenes/greenhouse.tscn" id="3_d2a71"]
+[ext_resource type="Script" uid="uid://bueocs1g55wpj" path="res://placement_controller.gd" id="3_xwt8d"]
+[ext_resource type="PackedScene" uid="uid://dbnyolanrwp56" path="res://scenes/large_crew_cabin.tscn" id="4_5pxbp"]
+[ext_resource type="PackedScene" uid="uid://dopos2oalwt5h" path="res://scenes/small_crew_cabin.tscn" id="5_kioby"]
+[ext_resource type="PackedScene" uid="uid://dfvm6f660n6cv" path="res://scenes/drill.tscn" id="6_ggwk1"]
+[ext_resource type="PackedScene" uid="uid://b5rgt6gujij8f" path="res://scenes/storage_silo.tscn" id="7_wmp6m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a8eqe"]
+
+[sub_resource type="Resource" id="Resource_o7sui"]
+script = ExtResource("2_t0jqn")
+building_name = "Greenhouse"
+building_scene = ExtResource("3_d2a71")
+building_description = "A Greenhouse that provides +10 Oxygen and -5 Water per Hour"
+money_cost = 1500
+constructable_cost = 56
+placement_shape = SubResource("BoxShape3D_a8eqe")
+metadata/_custom_type_script = "uid://e0m0c65rxut2"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf7c0"]
+
+[sub_resource type="Resource" id="Resource_tih5f"]
+script = ExtResource("2_t0jqn")
+building_name = "Large Crew Cabin"
+building_scene = ExtResource("4_5pxbp")
+building_description = "Stores you unhoused Astronauts"
+money_cost = 1500
+constructable_cost = 20
+placement_shape = SubResource("BoxShape3D_yf7c0")
+metadata/_custom_type_script = "uid://e0m0c65rxut2"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a70s8"]
+
+[sub_resource type="Resource" id="Resource_eu4nx"]
+script = ExtResource("2_t0jqn")
+building_name = "Small Crew Cabin"
+building_scene = ExtResource("5_kioby")
+building_description = "A small cabin to house your astronauts"
+money_cost = 750
+constructable_cost = 10
+placement_shape = SubResource("BoxShape3D_a70s8")
+metadata/_custom_type_script = "uid://e0m0c65rxut2"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_at0m2"]
+
+[sub_resource type="Resource" id="Resource_hbxvs"]
+script = ExtResource("2_t0jqn")
+building_name = "Drill"
+building_scene = ExtResource("6_ggwk1")
+building_description = "A drill to drill up samples, used for scientific development."
+money_cost = 4000
+constructable_cost = 50
+placement_shape = SubResource("BoxShape3D_at0m2")
+metadata/_custom_type_script = "uid://e0m0c65rxut2"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x2q3n"]
+
+[sub_resource type="Resource" id="Resource_6s41q"]
+script = ExtResource("2_t0jqn")
+building_name = "Storage Silo"
+building_scene = ExtResource("7_wmp6m")
+building_description = "A Storage Silo. It does what you think it does. Stores things. "
+money_cost = 500
+constructable_cost = 10
+placement_shape = SubResource("BoxShape3D_x2q3n")
+metadata/_custom_type_script = "uid://e0m0c65rxut2"
+
+[node name="placement_manager" type="CanvasLayer" unique_id=445134556]
+unique_name_in_owner = true
+script = ExtResource("1_3pvjo")
+available_builds = Array[ExtResource("2_t0jqn")]([SubResource("Resource_o7sui"), SubResource("Resource_tih5f"), SubResource("Resource_eu4nx"), SubResource("Resource_hbxvs"), SubResource("Resource_6s41q")])
+
+[node name="main_panel" type="Panel" parent="." unique_id=355579352]
+unique_name_in_owner = true
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="main_panel" unique_id=1391584975]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="main_panel/VBoxContainer" unique_id=1496107044]
+layout_mode = 2
+
+[node name="funds_label" type="Label" parent="main_panel/VBoxContainer/HBoxContainer" unique_id=941811382]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bo8rr")
+text = "Funds: "
+
+[node name="constructables_label" type="Label" parent="main_panel/VBoxContainer/HBoxContainer" unique_id=2102907694]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bo8rr")
+text = "Constructables: "
+
+[node name="error_label" type="Label" parent="main_panel/VBoxContainer/HBoxContainer" unique_id=994454969]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="main_panel/VBoxContainer" unique_id=1457482704]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="main_panel/VBoxContainer" unique_id=1146970818]
+propagate_maximum_size = true
+layout_mode = 2
+size_flags_vertical = 3
+scroll_horizontal_custom_step = 104.051
+horizontal_scroll_mode = 5
+vertical_scroll_mode = 5
+scroll_horizontal_by_default = true
+tile_scroll_hint = true
+
+[node name="GridContainer" type="GridContainer" parent="main_panel/VBoxContainer/ScrollContainer" unique_id=1389414365]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Node3D" type="Node3D" parent="." unique_id=5345720]
+script = ExtResource("3_xwt8d")

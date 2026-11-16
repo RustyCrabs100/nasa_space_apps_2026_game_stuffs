@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://530rw37jdodo"]
+
+[ext_resource type="Script" uid="uid://c2riin0g5cou" path="res://greenhouse.gd" id="1_ifm4c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_abjk7"]
+
+[node name="greenhouse" type="StaticBody3D" unique_id=1054976370]
+script = ExtResource("1_ifm4c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1821932093]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1907710014]
+shape = SubResource("BoxShape3D_abjk7")
