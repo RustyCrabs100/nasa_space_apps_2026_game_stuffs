@@ -1,0 +1,36 @@
+Center: Dictionary in Spanish
+
+6 sections
+ \1|2|3/
+ /4|5|6\
+ 
+greenhouse
++20 oxygen/hour
+-8 water/hour
+-2 energy/hour
+
+miscelaneous room
+-1 energy/hour (base)
+(in addition to whatever upgrades cause)
+
+drill
++3 samples/hour
+-5 energy/hour
+
+Solar panel
++5 energy/hour
+
+storage silo
+-0.5 energy/hour
+
+large truck
++2 samples/hour
+-5 energy/hour
+
+small crew cabin
+-1 energy/hour
+-30 oxygen/hour max (-15 per person)
+
+large crew cabin
+-2 energy/hour
+-60 oxygen/hour max (-15 per person)

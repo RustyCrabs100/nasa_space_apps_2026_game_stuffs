@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bpo8cr0k58rnj"]
+
+[ext_resource type="Script" uid="uid://c1beve5khdrne" path="res://scenes/resource_panel.gd" id="1_ls4bu"]
+
+[node name="ResourcePanel" type="CanvasLayer" unique_id=2094740063]
+script = ExtResource("1_ls4bu")
+
+[node name="Mainpanel" type="PanelContainer" parent="." unique_id=2036048972]
+custom_minimum_size = Vector2(900, 450)
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Mainpanel" unique_id=1990085392]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Mainpanel/MarginContainer" unique_id=1188782774]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Mainpanel/MarginContainer/VBoxContainer" unique_id=887956961]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Mainpanel/MarginContainer/VBoxContainer" unique_id=1969100855]
+layout_mode = 2
+
+[node name="HeaderRow" type="GridContainer" parent="Mainpanel/MarginContainer/VBoxContainer" unique_id=37314965]
+layout_mode = 2
+
+[node name="NameHeader" type="Label" parent="Mainpanel/MarginContainer/VBoxContainer/HeaderRow" unique_id=1337896190]
+layout_mode = 2
+
+[node name="AmountHeader" type="Label" parent="Mainpanel/MarginContainer/VBoxContainer/HeaderRow" unique_id=2109885067]
+layout_mode = 2
+
+[node name="IncomingHeader" type="Label" parent="Mainpanel/MarginContainer/VBoxContainer/HeaderRow" unique_id=203563204]
+layout_mode = 2
+
+[node name="UsageHeader" type="Label" parent="Mainpanel/MarginContainer/VBoxContainer/HeaderRow" unique_id=185536206]
+layout_mode = 2
+
+[node name="RunoutHeader" type="Label" parent="Mainpanel/MarginContainer/VBoxContainer/HeaderRow" unique_id=442624833]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Mainpanel/MarginContainer/VBoxContainer" unique_id=1024069464]
+layout_mode = 2
+
+[node name="ResourceList" type="VBoxContainer" parent="Mainpanel/MarginContainer/VBoxContainer/ScrollContainer" unique_id=505342723]
+layout_mode = 2

@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bmb2ejvv70nly"]
+
+[ext_resource type="Script" uid="uid://dsa8ngtuhb0re" path="res://player.gd" id="1_g2els"]
+[ext_resource type="PackedScene" uid="uid://bg8gaom5xt20o" path="res://scenes/placement_system.tscn" id="2_dqkch"]
+[ext_resource type="FontFile" uid="uid://b4kfw2v378oqu" path="res://assets/others/pixels_bjn5.ttf" id="2_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://bpo8cr0k58rnj" path="res://scenes/resource_panel.tscn" id="3_dqkch"]
+
+[node name="player" type="Node3D" unique_id=1769269690]
+script = ExtResource("1_g2els")
+placement_manager_scene = ExtResource("2_dqkch")
+resources_panel_scene = ExtResource("3_dqkch")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=1889005191]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+spring_length = 30.0
+
+[node name="cam" type="Camera3D" parent="SpringArm3D" unique_id=1993709106]
+
+[node name="light" type="DirectionalLight3D" parent="SpringArm3D" unique_id=709369306]
+
+[node name="audio" type="AudioStreamPlayer" parent="SpringArm3D" unique_id=217472906]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=902608812]
+
+[node name="location_text" type="Label" parent="CanvasLayer" unique_id=1382217875]
+unique_name_in_owner = true
+offset_right = 121.0
+offset_bottom = 34.0
+theme_override_fonts/font = ExtResource("2_qhqgy")
+text = "Location: "

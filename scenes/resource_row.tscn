@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://d1o6umb2li2ty"]
+
+[ext_resource type="Script" uid="uid://4l2r8nodkqdw" path="res://scenes/resource_row.gd" id="1_51jwl"]
+
+[node name="ResourceRow" type="GridContainer" unique_id=1252678172]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 5
+script = ExtResource("1_51jwl")
+
+[node name="NameLabel" type="Label" parent="." unique_id=1206706053]
+layout_mode = 2
+
+[node name="AmountLabel" type="Label" parent="." unique_id=1763458869]
+layout_mode = 2
+
+[node name="IncomingLabel" type="Label" parent="." unique_id=1743482761]
+layout_mode = 2
+
+[node name="UsageLabel" type="Label" parent="." unique_id=2145479224]
+layout_mode = 2
+
+[node name="RunoutLabel" type="Label" parent="." unique_id=367731370]
+layout_mode = 2
