@@ -11,9 +11,23 @@ var placement_controller: Node3D
 var camera: Camera3D
 var buildings_container: Node3D
 
-func setup(cam: Camera3D, buildings: Node3D) -> void:
+var demolish: bool
+
+func setup(cam: Camera3D, buildings: Node3D, demolish_set: bool = false) -> void:
+	demolish = demolish_set
 	camera = cam
 	buildings_container = buildings
+	
+	if demolish:
+		if placement_controller == null:
+			var controller_script = preload("res://placement_controller.gd")
+			
+			placement_controller = Node3D.new()
+			placement_controller.set_script(controller_script)
+			
+			get_tree().current_scene.add_child(placement_controller)
+			
+			placement_controller.setup(camera, buildings_container, demolish)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -95,7 +109,7 @@ func start_placement(building: BuildingData) -> void:
 		
 		get_tree().current_scene.add_child(placement_controller)
 		
-		placement_controller.setup(camera, buildings_container)
+		placement_controller.setup(camera, buildings_container, false)
 		placement_controller.start_placement(building)
 		
 		hide()

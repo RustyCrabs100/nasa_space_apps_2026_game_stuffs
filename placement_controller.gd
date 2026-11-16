@@ -1,6 +1,10 @@
 
 extends Node3D
 
+var demolition_mode := false
+var selected_demolition_target: Node3D
+var original_materials := {}
+
 var camera: Camera3D
 var buildings_container: Node3D
 
@@ -12,7 +16,12 @@ var current_position := Vector3.ZERO
 var last_preview_valid := false
 
 
-func setup(cam: Camera3D, buildings: Node3D) -> void:
+func setup(cam: Camera3D, buildings: Node3D, demolition_mode_set: bool) -> void:
+	demolition_mode = demolition_mode_set
+	if preview != null:
+		preview.queue_free()
+		preview = null
+	
 	camera = cam
 	buildings_container = buildings
 
@@ -41,6 +50,14 @@ func disable_preview_collision(node: Node) -> void:
 
 
 func _process(_delta: float) -> void:
+	
+	if demolition_mode:
+		var target = get_building_under_mouse()
+		
+		if target != selected_demolition_target:
+			selected_demolition_target = target
+			
+		return
 
 	if preview == null:
 		return
@@ -82,6 +99,47 @@ func get_mouse_ground_position() -> Vector3:
 
 	return Vector3.INF
 
+func get_building_under_mouse() -> Node3D:
+	var mouse = get_viewport().get_mouse_position()
+	
+	var origin = camera.project_ray_origin(mouse)
+	var direction = camera.project_ray_normal(mouse)
+	
+	var query = PhysicsRayQueryParameters3D.create(
+		origin,
+		origin + direction * 1000.0
+	)
+	
+	query.collision_mask = 2
+	
+	var result = get_world_3d().direct_space_state.intersect_ray(query)
+	
+	if result:
+		var collider = result.collider
+		
+		while collider != null:
+			if collider.get_parent() == buildings_container:
+				return collider
+			collider.get_parent()
+			
+	return null
+
+func demolish_building() -> void:
+	
+	
+	
+	if selected_demolition_target == null:
+		return
+	
+	GameManager.constructables[GameManager.AMOUNT] += 5
+	
+	print("Demolishing: ", selected_demolition_target.name)
+	
+	selected_demolition_target.queue_free()
+	
+	selected_demolition_target = null
+	
+	queue_free()
 
 func check_placement(pos: Vector3) -> bool:
 

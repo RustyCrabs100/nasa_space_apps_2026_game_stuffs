@@ -11,7 +11,11 @@ extends Node3D
 
 @export_group("Placement System")
 @export var placement_manager_scene: PackedScene
-@export var placement_manager: CanvasLayer
+var placement_manager: CanvasLayer
+
+@export_group("Resources System")
+@export var resources_panel_scene: PackedScene
+var resources_panel: CanvasLayer
 
 var rotating := false
 var panning := false
@@ -68,10 +72,29 @@ func _input(event: InputEvent) -> void:
 			
 			get_tree().current_scene.add_child(placement_manager)
 			
-			placement_manager.setup($SpringArm3D/cam, self.get_parent_node_3d())
+			placement_manager.setup($SpringArm3D/cam, self.get_parent_node_3d(), false)
 		else:
 			placement_manager.queue_free()
 			placement_manager = null
+	if event.is_action_pressed("destroy_build"):
+		if placement_manager == null:
+			placement_manager = placement_manager_scene.instantiate()
+			
+			get_tree().current_scene.add_child(placement_manager)
+			
+			placement_manager.setup($SpringArm3D/cam, self.get_parent_node_3d(), true)
+		else:
+			placement_manager.queue_free()
+			placement_manager = null
+	
+	if event.is_action_pressed("open_resources"):
+		if resources_panel == null:
+			resources_panel = resources_panel_scene.instantiate()
+			
+			get_tree().current_scene.add_child(resources_panel)
+		else:
+			resources_panel.queue_free()
+			resources_panel = null
 	
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT:

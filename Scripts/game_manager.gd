@@ -10,7 +10,7 @@ const USE_PER_HOUR = "use_per_hour"
 const EXPECTED_RUN_OUT_TIME = "expected_run_out_time"
 
 @export var crew_count: int = 8
-@export var unused_crew_count: int = 8
+@export var unused_crew_count: int = crew_count
 @export var unhoused_crew_count: int = crew_count
 
 @export var energy: Dictionary = {
