@@ -6,7 +6,7 @@ Center: Dictionary in Spanish
  
 greenhouse
 +20 oxygen/hour
--4 water/hour
+-8 water/hour
 -2 energy/hour
 
 miscelaneous room
